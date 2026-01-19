@@ -1,0 +1,300 @@
+/* --- VARIABLES & RESET --- */
+:root {
+    --bg-dark: #0B2027;
+    --accent-blue: #40798C;
+    --accent-teal: #70A9A1;
+    --card-beige: #CFD7C7;
+    --text-cream: #F6F1D1;
+    --text-white: #ffffff;
+    --font-header: 'DM Serif Display', serif;
+    --font-body: 'Quicksand', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-dark);
+    font-family: var(--font-body);
+    color: var(--text-white);
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+/* --- READING PROGRESS BAR --- */
+.progress-container {
+    width: 100%;
+    height: 5px;
+    background: transparent;
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+.progress-bar {
+    height: 5px;
+    background: var(--accent-teal);
+    width: 0%;
+    transition: width 0.1s ease;
+}
+
+/* --- BACK TO TOP BUTTON --- */
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--accent-teal);
+    color: var(--bg-dark);
+    border: none;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.3);
+    z-index: 99;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+#backToTop.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+#backToTop:hover {
+    background-color: var(--text-cream);
+    transform: translateY(-5px);
+}
+
+/* --- DECORATIVE BLOBS --- */
+.blob {
+    position: fixed;
+    background-color: var(--accent-teal);
+    z-index: 0;
+    opacity: 0.8;
+    pointer-events: none;
+}
+
+.blob-top {
+    top: -100px; right: -100px;
+    width: 600px; height: 600px;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+}
+
+.blob-bottom {
+    bottom: -150px; left: -150px;
+    width: 700px; height: 700px;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    background-color: var(--accent-blue);
+}
+
+/* --- NAVIGATION --- */
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px 0 20px 0;
+    position: relative;
+    z-index: 10;
+}
+
+.author-signature {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Profile Pic with Auto-Crop */
+.profile-pic {
+    width: 70px; height: 70px;
+    background-color: var(--accent-teal);
+    border-radius: 50%;
+    border: 3px solid var(--card-beige);
+    object-fit: cover;
+    transition: all 0.3s ease;
+}
+
+.profile-pic:hover {
+    transform: scale(1.1);
+    border-color: var(--text-cream);
+    box-shadow: 0 0 15px rgba(112, 169, 161, 0.6);
+    cursor: pointer;
+}
+
+.author-info { display: flex; flex-direction: column; }
+
+.author-label {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent-teal);
+    font-weight: 700;
+}
+
+.author-name {
+    font-family: var(--font-header);
+    font-size: 2rem;
+    color: var(--text-cream);
+    line-height: 1;
+}
+
+/* --- CONTAINER & CARD --- */
+.blog-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 40px 100px 40px;
+    position: relative;
+    z-index: 2;
+}
+
+.paper-card {
+    background-color: var(--card-beige);
+    width: 100%;
+    max-width: 1100px;
+    border-radius: 30px; 
+    padding: 80px 100px;
+    color: var(--bg-dark);
+    box-shadow: 20px 20px 0px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+/* --- ARTWORK IMAGES (Auto-Crop) --- */
+.blog-art1 {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    object-position: 0% 70%;
+    border-radius: 15px;
+    margin: 50px 0;
+    box-shadow: 8px 8px 0px rgba(64, 121, 140, 0.3);
+    display: block;
+    transition: all 0.5s ease;
+}
+
+.blog-art1:hover {
+    transform: scale(1.03);
+    border-color: var(--text-cream);
+    box-shadow: 0 0 15px rgba(112, 169, 161, 0.6);
+    cursor: pointer;
+}
+
+.blog-art2 {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    object-position: 0% 13%;
+    border-radius: 15px;
+    margin: 50px 0;
+    box-shadow: 8px 8px 0px rgba(64, 121, 140, 0.3);
+    display: block;
+    transition: all 0.5s ease;
+}
+
+.blog-art2:hover {
+    transform: scale(1.03);
+    border-color: var(--text-cream);
+    box-shadow: 0 0 15px rgba(112, 169, 161, 0.6);
+    cursor: pointer;
+}
+
+/* --- TYPOGRAPHY --- */
+.blog-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.subtitle-meta {
+    font-family: var(--font-body);
+    font-weight: 700;
+    color: var(--bg-dark);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-family: var(--font-header);
+    font-size: 4.5rem;
+    line-height: 1.1;
+    color: var(--bg-dark);
+    margin: 0;
+}
+
+h2 {
+    font-family: var(--font-header);
+    font-size: 2rem;
+    color: var(--bg-dark);
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 30px;
+    text-align: justify;
+    line-height: 1.9;
+    font-size: 1.15rem;
+    font-weight: 500;
+    border-left: 4px solid var(--accent-teal); 
+    padding-left: 20px;
+}
+
+/* --- QUOTE BOX --- */
+.quote-box {
+    background-color: rgba(64, 121, 140, 0.25);
+    border-radius: 15px;
+    padding: 40px;
+    margin: 50px 0;
+    text-align: center;
+    font-family: var(--font-header);
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--bg-dark);
+}
+
+/* --- REFLECTION BOX --- */
+.reflection-box {
+    margin-top: 80px;
+    background-color: var(--bg-dark);
+    padding: 50px;
+    border-radius: 20px;
+    color: var(--text-cream);
+    box-shadow: 10px 10px 0px var(--accent-teal);
+}
+
+.reflection-box h2 {
+    color: var(--text-cream);
+    margin-top: 0;
+}
+
+.reflection-box p {
+    color: var(--text-white);
+    border-left-color: var(--accent-teal);
+    margin-bottom: 0;
+}
+
+/* --- AUTHOR SOCIAL LINK --- */
+.author-handle {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--accent-blue);
+    text-decoration: none;
+    font-weight: 700;
+    margin-top: 5px;
+    transition: all 0.3s ease;
+}
+
+.author-handle:hover {
+    color: var(--text-cream);
+    letter-spacing: 1px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
+    .paper-card { padding: 40px 30px; }
+    h1 { font-size: 3rem; }
+    .blog-wrapper { padding: 20px; }
+    .blog-art { height: 250px; }
+}
